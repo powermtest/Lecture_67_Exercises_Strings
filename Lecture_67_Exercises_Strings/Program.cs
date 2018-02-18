@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Lecture_67_Exercises_Strings
 {
@@ -10,46 +8,68 @@ namespace Lecture_67_Exercises_Strings
     {
         //1- Write a program and ask the user to enter a few numbers separated by a hyphen.
         //Work out if the numbers are consecutive. 
-        //For example, if the input is "5-6-7-8-9" or "20-19-18-17-16", display a message: "Consecutive"; 
+        //For example, if the input is "5-6-7-8-9" or "20-19-18-17-16", display a message: "Consecutive";
         //otherwise, display "Not Consecutive".
         static void Main(string[] args)
         {
-            var wpisaneLiczby = "";
-            
+            var wpisaneLiczby = string.Empty;
+
             Console.WriteLine("Wpisz kilka liczb oddzielonych myslnikiem");
             Console.WriteLine("Sprawdze czy sa to kolejne liczby i to zakomunikuje");
             wpisaneLiczby = Console.ReadLine();
-            //var a = 0;
-            //var b = 1;
+            var listaLiczb = new List<int>();
+            var ciagMalejacy = false;
+            var ciagRosnacy = true;
 
             if (string.IsNullOrWhiteSpace(wpisaneLiczby))
             {
                 Console.WriteLine("szkoda, ze nie chcesz sie bawic. Narka.");
-              
             }
             else
             {
                 var tablicaWpisanychLiczb = wpisaneLiczby.Split('-');
-                for (int i = 0; i < tablicaWpisanychLiczb.Length; i++)
+                foreach (var VARIABLE in tablicaWpisanychLiczb)
                 {
-                    var max = Convert.ToInt32(tablicaWpisanychLiczb[i]);
-                    //var liczbaWieksza = Convert.ToInt32(tablicaWpisanychLiczb[i+1]);
+                    listaLiczb.Add(Convert.ToInt32(VARIABLE));
+                }
 
-                    if (max +1 == Convert.ToInt32(tablicaWpisanychLiczb[i + 1])|| i < tablicaWpisanychLiczb.Length)
+                if (ciagRosnacy)
+                {
+                    for (int i = 1; i < listaLiczb.Count; i++)
                     {
-                        Console.WriteLine("Liczba wieksza");
-                        //max = liczbaWieksza;
-                        //liczbaWieksza++;
-                    }
-                    foreach (var liczba in tablicaWpisanychLiczb)
-                    {
-                        if (liczba==)
+                        if (listaLiczb.ElementAt(i) != (listaLiczb.ElementAt(i - 1)) + 1)
                         {
-                            
+                            ciagRosnacy = false;
+                            ciagMalejacy = true;
+                            break;
                         }
                     }
                 }
-                
+
+                if (ciagMalejacy)
+                {
+                    for (int i = 1; i < listaLiczb.Count; i++)
+                    {
+                        if (listaLiczb.ElementAt(i) != (listaLiczb.ElementAt(i - 1) - 1))
+                        {
+                            ciagMalejacy = false;
+                            break;
+                        }
+                    }
+                }
+            }
+
+            if (ciagRosnacy)
+            {
+                Console.WriteLine("Ciag jest rosnacy!");
+            }
+            else if (ciagMalejacy)
+            {
+                Console.WriteLine("Ciag jest malejacy!");
+            }
+            else
+            {
+                Console.WriteLine("Liczby nie stanowia ciagu ani rosnacego, ani malejacego.");
             }
         }
     }
