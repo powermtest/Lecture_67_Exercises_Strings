@@ -11,12 +11,15 @@ namespace Cwiczenie_4
     //For example, if the user types: "number of students", display "NumberOfStudents". 
     //Make sure that the program is not dependent on the input.
     //So, if the user types "NUMBER OF STUDENTS", the program should still display "NumberOfStudents". 
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
-            Console.WriteLine("Wpisz parę słó oddzielając je spacją. Ja zamienię je wszystkie na wyrażenie z zastosowaniem PascalCase");
+            Console.WriteLine(
+                "Wpisz parę słó oddzielając je spacją. Ja zamienię je wszystkie na wyrażenie z zastosowaniem PascalCase");
             var input = Console.ReadLine();
+
+            #region Testing
 
             //var input = string.Empty;
             //var test1 = "pierwsze drugie trzecie czwarte";
@@ -24,28 +27,26 @@ namespace Cwiczenie_4
             //var test3 = "PI HGKJGH LKGHKJHG LKHGLJGHKJgh lkjhlkh";
             //var testNegatywny1 = "123123123";
             //var testNegatywny2 = "1234 123 4123asdfasd4 asdfasdf 234 123 4";
-            //input = test3;
-            
+            //input = test3; 
+
+            #endregion
+
             var wyrazyRazem = input.ToLower().Trim(' ').Split(' ');
 
             foreach (var wyraz in wyrazyRazem)
-            {
-                if (!wyraz.All(Char.IsLetter))
+                if (!wyraz.All(char.IsLetter))
                 {
                     Console.WriteLine("Oczekiwałem wyrazów składających się wyłącznie z liter... Narka...");
                     return;
                 }
-            }
 
             foreach (var VARIABLE in wyrazyRazem)
             {
                 var pierwszaLitera = VARIABLE.First().ToString().ToUpper();
                 var bezPierwszejLitery = VARIABLE.Remove(0, 1);
-                Console.Write(string.Concat(pierwszaLitera,bezPierwszejLitery));
+                Console.Write(string.Concat(pierwszaLitera, bezPierwszejLitery));
             }
             Console.WriteLine();
-
-
         }
     }
 }
