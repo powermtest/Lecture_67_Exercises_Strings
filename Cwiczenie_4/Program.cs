@@ -15,26 +15,28 @@ namespace Cwiczenie_4
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Wpisz pare slow oddzielajac je spacja. Ja zamienie je wszystkie na wyrazenie z zastosowaniem PascalCase");
-            //var input = Console.ReadLine();
-            //var wyrazyRazem = new List<string>();\
-            //var lowerInput = string.Empty;
-            var input = string.Empty;
-            var test1 = "pierwsze drugie trzecie czwarte";
-            var test2 = "  pierwsze drugie trzecie czwarte  ";
-            var test3 = "PI HGKJGH LKGHKJHG LKHGLJGHKJgh lkjhlkh";
-            var testNegatywny1 = "123123123";
-            var testNegatywny2 = "1234 123 4123asdfasd4 asdfasdf 234 123 4";
+            Console.WriteLine("Wpisz parę słó oddzielając je spacją. Ja zamienię je wszystkie na wyrażenie z zastosowaniem PascalCase");
+            var input = Console.ReadLine();
 
-            input = testNegatywny1;
-
-            //lowerInput = input.ToLower();
-
+            //var input = string.Empty;
+            //var test1 = "pierwsze drugie trzecie czwarte";
+            //var test2 = "  pierwsze drugie trzecie czwarte  ";
+            //var test3 = "PI HGKJGH LKGHKJHG LKHGLJGHKJgh lkjhlkh";
+            //var testNegatywny1 = "123123123";
+            //var testNegatywny2 = "1234 123 4123asdfasd4 asdfasdf 234 123 4";
+            //input = test3;
+            
             var wyrazyRazem = input.ToLower().Trim(' ').Split(' ');
 
+            foreach (var wyraz in wyrazyRazem)
+            {
+                if (!wyraz.All(Char.IsLetter))
+                {
+                    Console.WriteLine("Oczekiwałem wyrazów składających się wyłącznie z liter... Narka...");
+                    return;
+                }
+            }
 
-            
-            
             foreach (var VARIABLE in wyrazyRazem)
             {
                 var pierwszaLitera = VARIABLE.First().ToString().ToUpper();
